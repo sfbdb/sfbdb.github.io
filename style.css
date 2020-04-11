@@ -1,0 +1,58 @@
+body {
+  position: relative;
+}
+
+#content {
+  margin-top: 50px;
+  padding: 20px;
+}
+
+h2.sfb-champion {
+  padding-top: 70px;
+  margin-top: -70px;
+}
+
+div.sfb-card-grid {
+  display: grid;
+  grid-template-columns: 250px 250px 250px;
+  grid-gap: 10px;
+}
+
+div.sfb-card-col {
+  display: grid;
+  grid-template-columns: 250px;
+  grid-gap: 10px;
+}
+
+div.sfb-card {
+  height: 420px;
+  width: 250px;
+}
+
+img.sfb-card-champion {
+  width: 250px;
+}
+
+img.sfb-card-action {
+  width: 250px;
+}
+
+#toc {
+  position: fixed;
+  top: 70px;
+  right: 20px;
+}
+
+#challenges {
+  display: grid;
+  grid-template-columns: 175px 175px 175px 175px 175px 175px;
+  grid-gap: 10px;
+}
+
+#challenges img {
+  width: 175px;
+}
+
+nav[data-toggle=toc] .nav-link.active, nav[data-toggle=toc] .nav-link.active:focus, nav[data-toggle=toc] .nav-link.active:hover {
+  font-weight: 500;
+}

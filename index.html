@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="bootstrap-4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap-toc-1.0.1/css/bootstrap-toc.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Super Fantasy Brawl: Card Gallery</title>
+  </head>
+  <body data-spy="scroll" data-target="#toc" data-offset="70">
+
+    <nav id="toc" data-toggle="toc"></nav>
+    
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+      <a class="navbar-brand" href="#">Super Fantasy Brawl</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Card Gallery
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="index.html?arrange_by=numeric">Arranged numerically</a>
+              <a class="dropdown-item" href="index.html?arrange_by=type">Arranged by type</a>
+              <a class="dropdown-item" href="index.html?arrange_by=core">Arranged by core</a>
+            </div>
+          </li>    
+          <li class="nav-item">
+            <a class="nav-link" href="challenges.html">Challenges</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <script id="sfb-cards-numeric-template" type="text/x-handlebars-template">
+      {{#each champions}}
+        <h2 id="{{code}}" class="sfb-champion"><a href="#{{code}}">{{name}}</a> <small class="text-muted">"{{title}}"</small></h2>
+        <table class="table table-bordered" style="width:auto;">
+          <thead class="thead-dark">
+            <tr>
+              <th>Champion Card</th>
+              <th>Action Cards</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="sfb-card-col">
+                  {{> sfb-champion-cards}}
+                </div>
+              </td>
+              <td>
+                <div class="sfb-card-grid">
+                  {{#each cards}}
+                    {{> sfb-card index=(inc @index) code=../code}}
+                  {{/each}}
+                </div>
+              </td>
+            </tr>
+          </tbody>          
+        </table>
+      {{/each}}
+    </script>
+    
+    <script id="sfb-cards-by-type-template" type="text/x-handlebars-template">
+      {{#each champions}}
+        <h2 id="{{code}}" class="sfb-champion"><a href="#{{code}}">{{name}}</a> <small class="text-muted">"{{title}}"</small></h2>
+        <table class="table table-bordered" style="width:auto;">
+          <thead class="thead-dark">
+            <tr>
+              <th>Champion Card</th>
+              <th>Reaction Cards</th>
+              <th>Attack Cards</th>
+              <th>Skill Cards</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="sfb-card-col">
+                  {{> sfb-champion-cards }}
+                </div>
+              </td>
+              <td>
+                <div class="sfb-card-col">
+                  {{#each cards}}
+                    {{#ifEq type 'reaction'}}
+                      {{> sfb-card index=(inc @index) code=../code}}
+                    {{/ifEq}}
+                  {{/each}}
+                </div>
+              </td>
+              <td>
+                <div class="sfb-card-col">
+                  {{#each cards}}
+                    {{#ifEq type 'attack'}}
+                      {{> sfb-card index=(inc @index) code=../code}}
+                    {{/ifEq}}
+                  {{/each}}
+                </div>
+              </td>
+              <td>
+                <div class="sfb-card-col">
+                  {{#each cards}}
+                    {{#ifEq type 'skill'}}
+                      {{> sfb-card index=(inc @index) code=../code}}
+                    {{/ifEq}}
+                  {{/each}}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      {{/each}}
+    </script>
+
+    <script id="sfb-cards-by-core-template" type="text/x-handlebars-template">
+      {{#each champions}}
+        <h2 id="{{code}}" class="sfb-champion"><a href="#{{code}}">{{name}}</a> <small class="text-muted">"{{title}}"</small></h2>
+        <table class="table table-bordered" style="width:auto;">
+          <thead class="thead-dark">
+            <tr>
+              <th>Champion Card</th>
+              <th>Destruction Cards</th>
+              <th>Creation Cards</th>
+              <th>Manipulation Cards</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="table-secondary">
+                <div class="sfb-card-col">
+                  {{> sfb-champion-cards }}
+                </div>
+              </td>
+              <td class="table-danger">
+                <div class="sfb-card-col">
+                  {{#each cards}}
+                    {{#ifEq core 'red'}}
+                      {{> sfb-card index=(inc @index) code=../code}}
+                    {{/ifEq}}
+                  {{/each}}
+                </div>
+              </td>
+              <td class="table-warning">
+                <div class="sfb-card-col">
+                  {{#each cards}}
+                    {{#ifEq core 'yellow'}}
+                      {{> sfb-card index=(inc @index) code=../code}}
+                    {{/ifEq}}
+                  {{/each}}
+                </div>
+              </td>
+              <td class="table-primary">
+                <div class="sfb-card-col">
+                  {{#each cards}}
+                    {{#ifEq core 'blue'}}
+                      {{> sfb-card index=(inc @index) code=../code}}
+                    {{/ifEq}}
+                  {{/each}}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      {{/each}}
+    </script>
+    
+    <script id="sfb-card-template" type="text/x-handlebars-template">
+      <div class="sfb-card">
+        <img class="sfb-card-action" src="img/{{code}}-{{index}}.png" />
+        <div class="details">
+          {{#ifEq core 'red'}}
+            <span class="badge badge-danger">destruction</span>
+          {{/ifEq}}
+          {{#ifEq core 'yellow'}}
+            <span class="badge badge-warning">creation</span>
+          {{/ifEq}}
+          {{#ifEq core 'blue'}}
+            <span class="badge badge-primary">manipulation</span>
+          {{/ifEq}}
+          <span class="badge badge-dark">{{type}}
+            {{#ifEq type 'attack'}}
+            <span class="badge badge-danger">{{strength}}</span>
+            {{/ifEq}}
+          </span>
+          {{#if movement}}
+            <span class="badge badge-dark">movement <span class="badge badge-success">{{movement}}</span></span>
+          {{/if}}
+        </div>
+        <div class="tags">
+          {{#if target}}
+            <span class="badge badge-pill badge-info">{{target}}
+              {{#if max_range}}
+                <span class="badge badge-pill badge-warning">
+                {{#if min_range}}
+                  {{min_range}}-{{max_range}}
+                {{else}}
+                  {{max_range}}
+                {{/if}}
+                </span>
+              {{/if}}
+            </span>
+          {{/if}}
+          {{#each tags}}
+            <span class="badge badge-pill badge-info">{{this}}</span>
+          {{/each}}
+        </div>
+      </div>
+    </script>
+    
+    <script id="sfb-champion-cards-template" type="text/x-handlebars-template">
+      <div class="sfb-card">
+        <img class="sfb-card-champion" src="img/{{code}}-a.png" />
+        <div class="details">
+          <span class="badge badge-secondary">defence <span class="badge badge-light">{{defence}}</span></span>
+          <span class="badge badge-success">hitpoints <span class="badge badge-light">{{hitpoints}}</span></span>
+        </div>
+      </div>
+      <div class="sfb-card">
+        <img class="sfb-card-champion" src="img/{{code}}-b.png" />
+        <div class="details">
+          <span class="badge badge-secondary">defence <span class="badge badge-light">{{defence_levelled}}</span></span>
+          <span class="badge badge-success">hitpoints <span class="badge badge-light">{{hitpoints_levelled}}</span></span>
+        </div>
+        <div class="tags">
+        {{#each levelled_tags}}
+          <span class="badge badge-pill badge-info">{{.}}</span>
+        {{/each}}
+        </div>
+      </div>
+    </script>
+    
+    <div id="content" />
+
+    <script src="jquery-3.5.0/jquery.min.js"></script>
+    <script src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
+    <script src="bootstrap-toc-1.0.1/js/bootstrap-toc.min.js"></script>
+    <script src="handlebars-4.7.6/handlebars.min.js"></script>
+    <script src="app.js"></script>
+
+  </body>
+</html>
