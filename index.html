@@ -6,34 +6,40 @@
     <link rel="stylesheet" href="bootstrap-4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="bootstrap-toc-1.0.1/css/bootstrap-toc.min.css">
     <link rel="stylesheet" href="style.css">
-    <title>Super Fantasy Brawl: Card Gallery</title>
+    <title>Super Fantasy Brawl DB: Card Gallery</title>
   </head>
   <body data-spy="scroll" data-target="#toc" data-offset="70">
 
     <nav id="toc" data-toggle="toc"></nav>
     
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-      <a class="navbar-brand" href="#">Super Fantasy Brawl</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <a class="navbar-brand" href="index.html">Super Fantasy Brawl <small class="text-muted">DB</small></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav">
           <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="card-gallery-link" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Card Gallery
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="index.html?arrange_by=numeric">Arranged numerically</a>
-              <a class="dropdown-item" href="index.html?arrange_by=type">Arranged by type</a>
+            <div class="dropdown-menu" aria-labelledby="card-gallery-link">
               <a class="dropdown-item" href="index.html?arrange_by=core">Arranged by core</a>
+              <a class="dropdown-item" href="index.html?arrange_by=type">Arranged by type</a>
+              <a class="dropdown-item" href="index.html?arrange_by=numeric">Arranged numerically</a>
             </div>
-          </li>    
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="search.html">Search</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="champions.html">Champions</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="challenges.html">Challenges</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">About</a>
+            <a class="nav-link" href="about.html">About</a>
           </li>
         </ul>
       </div>
@@ -175,29 +181,30 @@
     
     <script id="sfb-card-template" type="text/x-handlebars-template">
       <div class="sfb-card">
-        <img class="sfb-card-action" src="img/small/{{code}}-{{index}}.png" />
+        <a href="img/{{code}}-{{index}}.png"><img class="sfb-card-action" src="img/small/{{code}}-{{index}}.png" /></a>
         <div class="details">
           {{#ifEq core 'red'}}
-            <span class="badge badge-danger">destruction</span>
+            <a href="search.html?core=red" class="badge badge-danger">destruction</a>
           {{/ifEq}}
           {{#ifEq core 'yellow'}}
-            <span class="badge badge-warning">creation</span>
+            <a href="search.html?core=yellow" class="badge badge-warning">creation</a>
           {{/ifEq}}
           {{#ifEq core 'blue'}}
-            <span class="badge badge-primary">manipulation</span>
+            <a href="search.html?core=blue" class="badge badge-primary">manipulation</a>
           {{/ifEq}}
-          <span class="badge badge-dark">{{type}}
+          </a>
+          <a href="search.html?type={{type}}" class="badge badge-dark">{{type}}
             {{#ifEq type 'attack'}}
             <span class="badge badge-danger">{{strength}}</span>
             {{/ifEq}}
-          </span>
+          </a>
           {{#if movement}}
-            <span class="badge badge-dark">movement <span class="badge badge-success">{{movement}}</span></span>
+            <a href="search.html?movement=true" class="badge badge-dark">movement <span class="badge badge-success">{{movement}}</span></a>
           {{/if}}
         </div>
         <div class="tags">
           {{#if target}}
-            <span class="badge badge-pill badge-info">{{target}}
+            <a href="search.html?target={{target}}" class="badge badge-pill badge-info">{{target}}
               {{#if max_range}}
                 <span class="badge badge-pill badge-warning">
                 {{#if min_range}}
@@ -207,10 +214,10 @@
                 {{/if}}
                 </span>
               {{/if}}
-            </span>
+            </a>
           {{/if}}
           {{#each tags}}
-            <span class="badge badge-pill badge-info">{{this}}</span>
+            <a href="search.html?tag={{this}}" class="badge badge-pill badge-info">{{this}}</a>
           {{/each}}
         </div>
       </div>
@@ -218,14 +225,14 @@
     
     <script id="sfb-champion-cards-template" type="text/x-handlebars-template">
       <div class="sfb-card">
-        <img class="sfb-card-champion" src="img/small/{{code}}-a.png" />
+        <a href="img/{{code}}-a.png"><img class="sfb-card-champion" src="img/small/{{code}}-a.png" /></a>
         <div class="details">
           <span class="badge badge-secondary">defence <span class="badge badge-light">{{defence}}</span></span>
           <span class="badge badge-success">hitpoints <span class="badge badge-light">{{hitpoints}}</span></span>
         </div>
       </div>
       <div class="sfb-card">
-        <img class="sfb-card-champion" src="img/small/{{code}}-b.png" />
+        <a href="img/{{code}}-b.png"><img class="sfb-card-champion" src="img/small/{{code}}-b.png" /></a>
         <div class="details">
           <span class="badge badge-secondary">defence <span class="badge badge-light">{{defence_levelled}}</span></span>
           <span class="badge badge-success">hitpoints <span class="badge badge-light">{{hitpoints_levelled}}</span></span>
@@ -244,7 +251,8 @@
     <script src="bootstrap-4.4.1/js/bootstrap.min.js"></script>
     <script src="bootstrap-toc-1.0.1/js/bootstrap-toc.min.js"></script>
     <script src="handlebars-4.7.6/handlebars.min.js"></script>
-    <script src="app.js"></script>
+    <script src="data.js"></script>
+    <script src="index.js"></script>
 
   </body>
 </html>
