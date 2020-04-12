@@ -52,27 +52,27 @@
         <a href="img/{{champion_code}}-{{index}}.png"><img class="sfb-card-action" src="img/small/{{champion_code}}-{{index}}.png" /></a>
         <div class="details">
           {{#ifEq card.core 'red'}}
-            <a href="search.html?core=red" class="badge badge-danger">destruction</a>
+            <a href="javascript:search('core', 'red');" class="badge badge-danger">destruction</a>
           {{/ifEq}}
           {{#ifEq card.core 'yellow'}}
-            <a href="search.html?core=yellow" class="badge badge-warning">creation</a>
+            <a href="javascript:search('core', 'yellow');" class="badge badge-warning">creation</a>
           {{/ifEq}}
           {{#ifEq card.core 'blue'}}
-            <a href="search.html?core=blue" class="badge badge-primary">manipulation</a>
+            <a href="javascript:search('core', 'blue');" class="badge badge-primary">manipulation</a>
           {{/ifEq}}
           </a>
-          <a href="search.html?type={{card.type}}" class="badge badge-dark">{{card.type}}
+          <a href="javascript:search('type', '{{card.type}}');" class="badge badge-dark">{{card.type}}
             {{#ifEq card.type 'attack'}}
             <span class="badge badge-danger">{{card.strength}}</span>
             {{/ifEq}}
           </a>
           {{#if card.movement}}
-            <a href="search.html?movement=true" class="badge badge-dark">movement <span class="badge badge-success">{{card.movement}}</span></a>
+            <a href="javascript:search('movement', 'true');" class="badge badge-dark">movement <span class="badge badge-success">{{card.movement}}</span></a>
           {{/if}}
         </div>
         <div class="tags">
           {{#if card.target}}
-            <a href="search.html?target={{card.target}}" class="badge badge-pill badge-info">{{card.target}}
+            <a href="javascript:search('target', '{{card.target}}');" class="badge badge-pill badge-info">{{card.target}}
               {{#if card.max_range}}
                 <span class="badge badge-pill badge-warning">
                 {{#if card.min_range}}
@@ -85,7 +85,7 @@
             </a>
           {{/if}}
           {{#each card.tags}}
-            <a href="search.html?tag={{this}}" class="badge badge-pill badge-info">{{this}}</a>
+            <a href="javascript:search('tag', '{{this}}');" class="badge badge-pill badge-info">{{this}}</a>
           {{/each}}
         </div>
       </div>

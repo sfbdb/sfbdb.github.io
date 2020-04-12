@@ -9,12 +9,11 @@ var movement = urlParams.get('movement');
 var cards = [];
 data.champions.forEach((champion) => {
   champion.cards.forEach((card, i) => {
-    if (card.tags.includes(tag) 
-        || card.type == type 
-        || card.core == core 
-        || (target && card.target == target) 
-        || (movement && card.movement)
-        || !(tag || type || core || target || movement)) {
+    if ((!tag || card.tags.includes(tag))
+        && (!type || card.type == type)
+        && (!core || card.core == core) 
+        && (!target || card.target == target) 
+        && (!movement || card.movement)) {
       cards.push({
         "card": card,
         "index": i + 1,
@@ -33,3 +32,10 @@ Handlebars.registerHelper('ifEq', function(lvalue, rvalue, options) {
 });
 var html = template(cards);
 document.getElementById('content').innerHTML = html;
+
+function search(key, value) {
+  var urlParams = new URLSearchParams(window.location.search);
+  urlParams.delete(key);
+  urlParams.append(key, value);
+  window.location.search = urlParams;
+}
