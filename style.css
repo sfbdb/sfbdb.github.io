@@ -25,7 +25,7 @@ div.sfb-card-col {
 }
 
 div.sfb-card {
-  height: 420px;
+  min-height: 420px;
   width: 250px;
 }
 

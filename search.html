@@ -46,11 +46,26 @@
     </nav>
     
     <script id="sfb-cards-template" type="text/x-handlebars-template">
+      {{#if params}}
+      <p>
+        Search filters:
+        {{#each filters}}
+        {{#if this}}
+        <a href="javascript:removeSearch('{{@key}}', '{{this}}');" class="badge badge-secondary">
+          {{@key}}: {{this}} &times;
+          </a>
+        {{/if}}
+        {{/each}}
+        <i>({{cards.length}} total results found)</i>
+      </p>
+      {{/if}}
+    
       <div class="sfb-search-results">
-      {{#each this}}
+      {{#each cards}}
       <div class="sfb-card">
         <a href="img/{{champion_code}}-{{index}}.png"><img class="sfb-card-action" src="img/small/{{champion_code}}-{{index}}.png" /></a>
         <div class="details">
+          <a href="javascript:search('champion', '{{champion_code}}');" class="badge badge-secondary">{{champion_code}}</a>
           {{#ifEq card.core 'red'}}
             <a href="javascript:search('core', 'red');" class="badge badge-danger">destruction</a>
           {{/ifEq}}
